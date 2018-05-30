@@ -8,9 +8,10 @@ print(a)
 
 
 import numpy as np
+import random
 
 Timesteps=30
-Interval_prediction=5
+Interval_prediction=20
 
 def getListFromCsv():
     data = np.loadtxt('../examples/csv/MyRecordedMouseData.csv', delimiter=',', dtype='float')
@@ -44,6 +45,13 @@ def makeData():
     return np_Input,np_Outpuy
     pass
 
+
+def getRandom(x,y):
+    numRandom=random.randrange(y.shape[0])
+    rand_x=x[numRandom][np.newaxis,:]
+    rand_y=y[numRandom][np.newaxis,:]
+    print(numRandom)
+    return rand_x,rand_y
 
 #a,b=makeData()
 #print(a)
