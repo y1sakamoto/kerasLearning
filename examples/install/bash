@@ -1,0 +1,28 @@
+echo "export CUDA_HOME=/usr/local/cuda" >> ~/.bash_profile
+echo "export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$CUDA_HOME:$CUDA_HOME/extras/CUPTI/lib"">> ~/.bash_profile
+echo "export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH">> ~/.bash_profile
+source ~/.bash_profile
+
+
+export CUDA_HOME=/usr/local/cuda'
+export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib
+export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
+export PATH=$DYLD_LIBRARY_PATH:$PATH
+
+https://github.com/tensorflow/tensorflow/issues/6729
+
+https://qiita.com/JeJeNeNo/items/05e148a325192004e2cd
+
+
+echo -e "\n## CUDA and cuDNN paths"  >> ~/.bashrc
+echo 'export PATH=/usr/local/cuda/bin:${PATH}' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib:${LD_LIBRARY_PATH}' >> ~/.bashrc
+source ~/.bashrc
+
+
+/////e####cho 'export PATH=/usr/hoge/ban:$PATH' >> .bash_profile
+
+echo 'export CUDA_HOME=/usr/local/cuda' >> .bash_profile
+echo 'export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib' >> .bash_profile
+echo 'export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH' >> .bash_profile
+echo 'export PATH=$DYLD_LIBRARY_PATH:$PATH' >> .bash_profile
