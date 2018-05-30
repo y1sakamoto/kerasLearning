@@ -11,7 +11,7 @@ import numpy as np
 import random
 
 Timesteps=30
-Interval_prediction=20
+Interval_prediction=60
 
 def getListFromCsv():
     data = np.loadtxt('../examples/csv/MyRecordedMouseData.csv', delimiter=',', dtype='float')

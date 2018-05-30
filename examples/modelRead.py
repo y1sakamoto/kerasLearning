@@ -12,7 +12,8 @@ import os
 path=os.path.exists("../examples/weights/weight_10000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
-model=load_model("../examples/weights/weight_10000.h5")
+#model=load_model("../examples/weights/weight_10000.h5")
+model=load_model("../examples/weight_40000.h5")
 
 batch_size=20
 data_dim=2
@@ -25,7 +26,7 @@ X,Y=csv.makeData()
 while(True):
 
     x,y=csv.getRandom(X,Y)
-    prediction=model.predict(x)
+    prediction=model.predict(x,batch_size=64)
     print(y)
     print(prediction)
     print(y-prediction)
