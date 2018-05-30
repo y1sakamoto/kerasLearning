@@ -1,6 +1,8 @@
 import os
 
-a=os.path.exists("./examples/csv/MyRecordedMouseData.csv")
+a=os.path.exists("../examples/csv/MyRecordedMouseData.csv")
+#a=os.path.exists("MyRecordedMouseData.csv")
+
 print(a)
 
 
@@ -8,10 +10,10 @@ print(a)
 import numpy as np
 
 Timesteps=30
-Interval_prediction=10
+Interval_prediction=5
 
 def getListFromCsv():
-    data = np.loadtxt('./examples/csv/MyRecordedMouseData.csv', delimiter=',', dtype='float')
+    data = np.loadtxt('../examples/csv/MyRecordedMouseData.csv', delimiter=',', dtype='float')
     print('datasahpe:[%d][%d]' % (data.shape[0],data.shape[1]))
     list = data.tolist()
     dataSize0=data.shape[0]

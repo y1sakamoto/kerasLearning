@@ -1,13 +1,14 @@
-from keras.layers import Input, Dense,Flatten,Conv2D,Conv1D
+from keras.layers import Input, Dense,Flatten,Conv2D,Conv1D,Activation
 from keras.models import Model
 from keras import optimizers
 
 import numpy as np
 import readCsvData as csv
 
-batch_size=10
+batch_size=20
 data_dim=2
 timesteps = 20
+epoch=10000
 
 set()
 
@@ -16,7 +17,6 @@ X,Y=csv.makeData()
 
 
 #X=np.random.random((batch_size,timesteps,data_dim))
-
 #Y=np.random.random((batch_size,data_dim))
 
 print(X.shape)
@@ -29,16 +29,21 @@ inputs = Input(shape=(timesteps,data_dim))
 #inputs = Input(shape=(data_dim,))
 
 # a layer instance is callable on a tensor, and returns a tensor
-#x = Dense(10, activation='relu')(inputs)
-#x = Conv1D(64, 2)(inputs)
-#x = Conv1D(64, 2)(x)
 x = Dense(10, activation='relu')(inputs)
+
+#x = Conv1D(64, 2,activation='relu')(x)
+#x = Conv1D(64, 2)(x)
+x = Dense(40, activation='relu')(x)
+x = Dense(40, activation='relu')(x)
+x = Dense(40, activation='relu')(x)
+x = Dense(40, activation='relu')(x)
+
 x = Flatten()(x)
-x = Dense(64, activation='relu')(x)
-x = Dense(64, activation='relu')(x)
-x = Dense(64, activation='relu')(x)
-x = Dense(10, activation='relu')(x)
-out = Dense(2, activation='relu')(x)
+
+x = Dense(40, activation='relu')(x)
+x = Dense(40, activation='relu')(x)
+out = Dense(40, activation='relu')(x)
+
 
 predictions = Dense(data_dim, activation='sigmoid')(out)
 
@@ -54,7 +59,14 @@ print(model.summary())
 
 model.compile(loss="binary_crossentropy", optimizer="sgd", metrics=["accuracy"])
 
-model.fit(X, Y, epochs=3000, batch_size=32)
+learningNum=0
+while(True):
+    model.fit(X, Y, epochs=epoch, batch_size=256)
+
+    fileName='weight_%i.h5' % (learningNum*epoch)
+    print(fileName)
+    learningNum+=1
+    model.save(fileName)
 
 #model.fit(Data_X, Data_Y)  # starts training
 print(model.summary())
