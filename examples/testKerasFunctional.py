@@ -5,15 +5,20 @@ from keras import optimizers
 import numpy as np
 import readCsvData as csv
 
+
 batch_size=20
 data_dim=2
 timesteps = 20
-epoch=1000
+epoch=5000
 
 
 csv.setTimeSteps(timesteps)
-X,Y=csv.makeData()
 
+###########################################
+##############Making Data##################
+#X,Y=csv.makeData()
+X,Y=csv.getShuffleData()
+###########################################
 
 #X=np.random.random((batch_size,timesteps,data_dim))
 #Y=np.random.random((batch_size,data_dim))

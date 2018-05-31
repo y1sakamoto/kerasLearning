@@ -14,7 +14,7 @@ Timesteps=30
 Interval_prediction=20
 
 def getListFromCsv():
-    data = np.loadtxt('./examples/csv/MyRecordedMouseData.csv', delimiter=',', dtype='float')
+    data = np.loadtxt('../examples/csv/MyRecordedMouseData.csv', delimiter=',', dtype='float')
     print('datasahpe:[%d][%d]' % (data.shape[0],data.shape[1]))
     list = data.tolist()
     dataSize0=data.shape[0]
@@ -45,6 +45,18 @@ def makeData():
     return np_Input,np_Outpuy
     pass
 
+def getShuffleData():
+    input,output=makeData()
+    size=input.shape[0]
+    print(size)
+    numArray=np.arange(size)
+    size=(int)(size*0.5)
+    numArray=np.random.permutation(numArray)
+    numArray=np.random.choice(numArray,size,replace=False)
+    #print(input[numArray])
+    return input[numArray],output[numArray]
+
+
 
 def getRandom(x,y):
     numRandom=random.randrange(y.shape[0])
@@ -53,12 +65,14 @@ def getRandom(x,y):
     print(numRandom)
     return rand_x,rand_y
 
+
+a,b=getShuffleData()
 #a,b=makeData()
-#print(a)
-#print(b)
+print(a)
+print(b)
 
-#print(a.shape)
-#print(b.shape)
+print(a.shape)
+print(b.shape)
 
-#print(type(a))
-#print(type(b))
+print(type(a))
+print(type(b))

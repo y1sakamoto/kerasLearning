@@ -7,6 +7,11 @@ arr = np.append(arr, np.array([[4, 5, 0]]), axis=0)
 #print(arr)
 
 
+A=np.arange(1000)
+A=np.resize(A,(10,10,2))
+x=np.random.permutation(10)
+print(A[x])
+
 def f (_arr:np.empty((0,3), int)):
     print(_arr.shape)
     print(type(_arr))
@@ -85,10 +90,10 @@ Y=np.random.random((batch_size,data_dim))
 
 
 data = np.array(range(9)).reshape(3, 3)
-print(data)
+#print(data)
 new = np.delete(data, 0, 0)
-print(new.shape)
-print(new)
+##print(new.shape)
+#print(new)
 
 data = np.array(range(100)).reshape(1,50,2)
 data = np.zeros((1,50,2))
@@ -96,17 +101,17 @@ data = np.zeros((1,50,2))
 data = np.delete(data, 0, 1)
 data=np.append(data, [[[0, 0]]], axis=1)
 data=np.insert(data, 20,  [[[0, 0]]], axis=1)
-print(data)
+#print(data)
 
 ar=np.zeros((1,50,2))
 emp=np.empty((1,1,2),float)
-print(emp)
+#print(emp)
 
 
 data = np.array([[[0,30]]])
 deta = data.resize(2)
 p=data.tolist()
-print(data)
-print(p)
+#print(data)
+#print(p)
 
 #print(ar)
