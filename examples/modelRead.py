@@ -4,16 +4,17 @@ import readCsvData as csv
 
 from keras import optimizers
 
-import numpy as np 
+import numpy as np
 #import readCsvData as csv
 
 import os
 
-path=os.path.exists("../examples/weights/weight_10000.h5")
+path=os.path.exists("../examples/weight_61000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
-model=load_model("../examples/0531weight/weight_60000.h5")
+
+model=load_model("../examples/weight_61000.h5")
 
 batch_size=20
 data_dim=2
@@ -23,7 +24,8 @@ epoch=1000
 csv.setTimeSteps(timesteps)
 X,Y=csv.makeData()
 
-learningNum=60
+learningNum=61
+
 while(True):
     model.fit(X, Y, epochs=epoch, batch_size=300)
 
