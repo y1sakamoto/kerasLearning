@@ -4,8 +4,18 @@ from osc4py3 import oscmethod as osm
 import numpy as np
 
 
-arrayInput=np.zeros((1,50,2))
+arrayInput=np.zeros((1,20,2))
 
+def setTimeSteps(steps):
+    global arrayInput
+    arrayInput=np.zeros((1,steps,2))
+    pass
+
+
+def getArrayInput():
+    global arrayInput
+    return arrayInput
+    pass
 
 def handlerfunction(s, x, y):
     # Will receive message data unpacked in s, x, y
@@ -50,10 +60,11 @@ def send(arr):
     pass
 
 #def sendNpArray(arr:np.empty((1,1,2), float)):
-def sendNpArray(arr):
+def sendArray(arr):
     arr = np.resize(arr,2)
     list= arr.tolist()
     msg = oscbuildparse.OSCMessage("/predict/", None, list)
+    print (list)
     osc_send(msg, "osc_sender")
     pass
 
@@ -68,8 +79,8 @@ def getInputArray():
 
 
 
-data = np.array([[[1,22]]])
-set()
-while(True):
-    loop()
-    sendNpArray(data)
+#data = np.array([[[1,22]]])
+#set()
+#while(True):
+#    loop()
+#    sendArray(data)
