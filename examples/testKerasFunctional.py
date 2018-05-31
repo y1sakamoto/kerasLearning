@@ -27,18 +27,18 @@ print(Y.shape)
 inputs = Input(shape=(timesteps,data_dim))
 #inputs = Input(shape=(data_dim,))
 # a layer instance is callable on a tensor, and returns a tensor
-x = Dense(20, activation='relu')(inputs)
-x = Dense(40, activation='relu')(x)
-x = Dense(40, activation='relu')(x)
+x = Dense(100, activation='relu')(inputs)
+x = Dense(100, activation='relu')(x)
+x = Dense(100, activation='relu')(x)
 
 x = Flatten()(x)
 
 #x = Conv1D(64, 2,activation='relu')(x)
 #x = Conv1D(64, 2)(x)
-x = Dense(40, activation='relu')(x)
-x = Dense(100, activation='relu')(x)
-x = Dense(100, activation='relu')(x)
-out = Dense(20, activation='relu')(x)
+x = Dense(200, activation='relu')(x)
+x = Dense(200, activation='relu')(x)
+x = Dense(200, activation='relu')(x)
+out = Dense(200, activation='relu')(x)
 
 
 predictions = Dense(data_dim, activation='sigmoid')(out)
