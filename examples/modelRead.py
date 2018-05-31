@@ -4,7 +4,7 @@ import readCsvData as csv
 
 from keras import optimizers
 
-import numpy as np
+import numpy as np 
 #import readCsvData as csv
 
 import os
