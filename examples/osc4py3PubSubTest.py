@@ -3,6 +3,10 @@ from osc4py3 import oscbuildparse
 from osc4py3 import oscmethod as osm
 import numpy as np
 
+
+arrayInput=np.zeros((1,50,2))
+
+
 def handlerfunction(s, x, y):
     # Will receive message data unpacked in s, x, y
     print(s)
@@ -16,8 +20,13 @@ def finish():
 
 
 def setValue(x,y):
+
+    global arrayInput
+    arrayInput = np.delete(arrayInput, 0, 1)
+    arrayInput= np.append(arrayInput, [[[x, y]]], axis=1)
     print(x)
     print(y)
+    print(arrayInput)
     pass
 
 
@@ -31,25 +40,36 @@ def set ():
     osc_method("/test/*", handlerfunction)
     osc_method("/finish/*", finish)
     osc_method("/pos/*", setValue)
-
     pass
 
 
 def send(arr):
-
-
 #    msg = oscbuildparse.OSCMessage("/test/me", ",sif", ["text", 672, 8.871])
     msg = oscbuildparse.OSCMessage("/test/", None, arr)
     osc_send(msg, "osc_sender")
     pass
 
+#def sendNpArray(arr:np.empty((1,1,2), float)):
+def sendNpArray(arr):
+    arr = np.resize(arr,2)
+    list= arr.tolist()
+    msg = oscbuildparse.OSCMessage("/predict/", None, list)
+    osc_send(msg, "osc_sender")
+    pass
+
+
 def loop():
     osc_process()
     pass
 
+def getInputArray():
+    global arrayInput
+    return arrayInput
 
 
 
+data = np.array([[[1,22]]])
 set()
 while(True):
     loop()
+    sendNpArray(data)

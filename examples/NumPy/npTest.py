@@ -4,15 +4,19 @@ import random
 arr = np.empty((0,3), int)
 arr = np.append(arr, np.array([[1, 2, 3]]), axis=0)
 arr = np.append(arr, np.array([[4, 5, 0]]), axis=0)
-print(arr)
+#print(arr)
 
 
 def f (_arr:np.empty((0,3), int)):
+    print(_arr.shape)
+    print(type(_arr))
+
     _arr=np.append(_arr, np.array([[1, 2, 3]]), axis=0)
     print(_arr)
     print(np.may_share_memory(_arr,arr))
 f(arr)
-print(arr)
+
+#print(arr)
 
 
 def back ():
@@ -28,9 +32,9 @@ def back ():
 
     return _arrA,_arrB
 
-a,b=back()
-print(a)
-print(b)
+#a,b=back()
+#print(a)
+#print(b)
 
 
 batch_size=20
@@ -46,7 +50,7 @@ b[np.newaxis,:,:]
 
 x=np.arange(15).reshape(3,5)
 _x=x[np.newaxis,:,:]
-print(_x)
+#print(_x)
 
 def getRandom(x,y):
     numRandom=random.randrange(y.shape[0])
@@ -55,12 +59,12 @@ def getRandom(x,y):
     print(numRandom)
     return rand_x,rand_y
 
-i,j=back()
-s,t=getRandom(i,j)
-print (i)
-print (s)
-print (j)
-print (t)
+#i,j=back()
+#s,t=getRandom(i,j)
+#print (i)
+#print (s)
+#print (j)
+#print (t)
 
 
 arr = np.empty((0,3), int)
@@ -70,12 +74,39 @@ arr = np.append(arr, np.array([[4, 5, 0]]), axis=0)
 arr2 = np.empty((0,3), int)
 arr2 = np.append(arr2, np.array([[1, 1, 1]]), axis=0)
 arr2 = np.append(arr2, np.array([[2, 2, 2]]), axis=0)
-print(arr-arr2)
+#print(arr-arr2)
 
 X=np.random.random((batch_size,timesteps,data_dim))
 Y=np.random.random((batch_size,data_dim))
 
 
 
+#print('datasahpe:[%d][%d]' % (X.shape[0],Y.shape[1]))
 
-print('datasahpe:[%d][%d]' % (X.shape[0],Y.shape[1]))
+
+data = np.array(range(9)).reshape(3, 3)
+print(data)
+new = np.delete(data, 0, 0)
+print(new.shape)
+print(new)
+
+data = np.array(range(100)).reshape(1,50,2)
+data = np.zeros((1,50,2))
+
+data = np.delete(data, 0, 1)
+data=np.append(data, [[[0, 0]]], axis=1)
+data=np.insert(data, 20,  [[[0, 0]]], axis=1)
+print(data)
+
+ar=np.zeros((1,50,2))
+emp=np.empty((1,1,2),float)
+print(emp)
+
+
+data = np.array([[[0,30]]])
+deta = data.resize(2)
+p=data.tolist()
+print(data)
+print(p)
+
+#print(ar)
