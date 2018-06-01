@@ -13,11 +13,11 @@ path=os.path.exists("../examples/weight_60000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
-model=load_model("../examples/weight_20000.h5")
+model=load_model("../examples/weight_70000.h5")
 
 batch_size=20
 data_dim=2
-timesteps = 20
+timesteps = 50
 epoch=1000
 
 csv.setTimeSteps(timesteps)
