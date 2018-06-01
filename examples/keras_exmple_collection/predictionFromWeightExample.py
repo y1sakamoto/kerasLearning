@@ -3,6 +3,8 @@ from keras.models import Model
 from keras import optimizers
 
 import numpy as np
+import sys
+sys.path.append('..')
 import readCsvData as csv
 
 

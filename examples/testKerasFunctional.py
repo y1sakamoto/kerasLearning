@@ -6,20 +6,22 @@ import numpy as np
 import readCsvData as csv
 
 
-batch_size=20
+
 data_dim=2
-timesteps = 20
+timesteps = 50
 epoch=5000
+Interval_prediction=50
 
 
 csv.setTimeSteps(timesteps)
+csv.setIntervalPrediction(Interval_prediction)
 
 ###########################################
 ##############Making Data##################
 #X,Y=csv.makeData()
 X,Y=csv.getShuffleData()
 ###########################################
-
+#batch_size=20
 #X=np.random.random((batch_size,timesteps,data_dim))
 #Y=np.random.random((batch_size,data_dim))
 
@@ -32,18 +34,17 @@ print(Y.shape)
 inputs = Input(shape=(timesteps,data_dim))
 #inputs = Input(shape=(data_dim,))
 # a layer instance is callable on a tensor, and returns a tensor
-x = Dense(100, activation='relu')(inputs)
-x = Dense(100, activation='relu')(x)
-x = Dense(100, activation='relu')(x)
+x = Dense(2, activation='relu')(inputs)
+x = Dense(2, activation='relu')(x)
 
 x = Flatten()(x)
 
 #x = Conv1D(64, 2,activation='relu')(x)
 #x = Conv1D(64, 2)(x)
-x = Dense(200, activation='relu')(x)
-x = Dense(200, activation='relu')(x)
-x = Dense(200, activation='relu')(x)
-out = Dense(200, activation='relu')(x)
+x = Dense(100, activation='relu')(x)
+x = Dense(100, activation='relu')(x)
+x = Dense(100, activation='relu')(x)
+out = Dense(100, activation='relu')(x)
 
 
 predictions = Dense(data_dim, activation='sigmoid')(out)
@@ -63,9 +64,9 @@ model.compile(loss="binary_crossentropy", optimizer="sgd", metrics=["accuracy"])
 
 
 
-learningNum=0
+learningNum=1
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=300)
+    model.fit(X, Y, epochs=epoch, batch_size=1000)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)

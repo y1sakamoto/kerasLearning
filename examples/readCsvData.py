@@ -27,6 +27,13 @@ def setTimeSteps(_time):
     print(Timesteps)
     pass
 
+def setIntervalPrediction(_frame):
+    global Interval_prediction
+    Interval_prediction=_frame
+    print(Interval_prediction)
+    pass
+
+
 def makeData():
     input=[]
     output=[]
@@ -66,13 +73,13 @@ def getRandom(x,y):
     return rand_x,rand_y
 
 
-a,b=getShuffleData()
+#a,b=getShuffleData()
 #a,b=makeData()
-print(a)
-print(b)
+#print(a)
+#print(b)
 
-print(a.shape)
-print(b.shape)
+#print(a.shape)
+#print(b.shape)
 
-print(type(a))
-print(type(b))
+#print(type(a))
+#print(type(b))

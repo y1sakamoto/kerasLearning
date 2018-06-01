@@ -9,6 +9,10 @@ export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib
 export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
 export PATH=$DYLD_LIBRARY_PATH:$PATH
 
+ /usr/local/cuda/bin
+echo "export LD_LIBRARY_PATH=/usr/local/cuda/lib">> ~/.bash_profile
+echo "export PATH=$PATH:/usr/local/cuda/bin">> ~/.bash_profile
+
 https://github.com/tensorflow/tensorflow/issues/6729
 
 https://qiita.com/JeJeNeNo/items/05e148a325192004e2cd
