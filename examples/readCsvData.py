@@ -42,7 +42,7 @@ def makeData():
     #_MaxNum=10
     for i in range(_MaxNum):
         array_data=[]
-        output.append(list[i+Interval_prediction])
+        output.append(list[i+Timesteps+Interval_prediction])
         for j in range(Timesteps):
             array_data.append(list[i+j])
         input.append(array_data)

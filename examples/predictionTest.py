@@ -23,13 +23,17 @@ epoch=1000
 osc.set()
 osc.setTimeSteps(timesteps)
 
+counter=0
 while(True):
+    counter+=1
     x=osc.getArrayInput()
     print(x)
-    prediction=model.predict(x,batch_size=64)
-    osc.sendArray(prediction)
+    if counter==3:
+        counter=0
+        prediction=model.predict(x,batch_size=64)
+        osc.sendArray(prediction)
     osc.loop()
-    sleep(0.033)
+    #sleep(0.033)
     #print(y)
     #print(prediction)
     #print(y-prediction)
