@@ -8,9 +8,9 @@ import readCsvData as csv
 
 
 data_dim=2
-timesteps = 50
+timesteps = 20
 epoch=5000
-Interval_prediction=50
+Interval_prediction=20
 
 
 csv.setTimeSteps(timesteps)
@@ -34,17 +34,17 @@ print(Y.shape)
 inputs = Input(shape=(timesteps,data_dim))
 #inputs = Input(shape=(data_dim,))
 # a layer instance is callable on a tensor, and returns a tensor
-x = Dense(2, activation='relu')(inputs)
-x = Dense(2, activation='relu')(x)
+x = Dense(20, activation='relu')(inputs)
+x = Dense(20, activation='relu')(x)
 
 x = Flatten()(x)
 
 #x = Conv1D(64, 2,activation='relu')(x)
 #x = Conv1D(64, 2)(x)
-x = Dense(100, activation='relu')(x)
-x = Dense(100, activation='relu')(x)
-x = Dense(100, activation='relu')(x)
-out = Dense(100, activation='relu')(x)
+x = Dense(500, activation='relu')(x)
+x = Dense(500, activation='relu')(x)
+x = Dense(500, activation='relu')(x)
+out = Dense(500, activation='relu')(x)
 
 
 predictions = Dense(data_dim, activation='sigmoid')(out)
@@ -66,7 +66,7 @@ model.compile(loss="binary_crossentropy", optimizer="sgd", metrics=["accuracy"])
 
 learningNum=1
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=1000)
+    model.fit(X, Y, epochs=epoch, batch_size=10000)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)

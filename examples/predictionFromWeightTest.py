@@ -13,12 +13,16 @@ path=os.path.exists("../examples/weight_60000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
-model=load_model("../examples/weight_70000.h5")
+model=load_model("../examples/weight_140000.h5")
 
-batch_size=20
+
 data_dim=2
-timesteps = 50
-epoch=1000
+timesteps = 20
+epoch=5000
+Interval_prediction=20
+
+
+csv.setIntervalPrediction(Interval_prediction)
 
 csv.setTimeSteps(timesteps)
 X,Y=csv.makeData()
