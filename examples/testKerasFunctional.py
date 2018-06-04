@@ -9,7 +9,7 @@ import readCsvData as csv
 
 data_dim=2
 timesteps = 50
-epoch=10000
+epoch=5000
 Interval_prediction=30
 
 

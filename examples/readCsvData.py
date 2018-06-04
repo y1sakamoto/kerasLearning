@@ -1,6 +1,6 @@
 import os
 
-a=os.path.exists("./examples/csv/MyRecordedMouseData.csv")
+a=os.path.exists("../examples/csv/MyRecordedMouseData.csv")
 #a=os.path.exists("MyRecordedMouseData.csv")
 
 print(a)
