@@ -1,4 +1,4 @@
-from keras.layers import Input, Dense,Flatten,Conv2D,Conv1D,Activation
+from keras.layers import Input, Dense,Flatten,Conv2D,Conv1D,Activation,LSTM
 from keras.models import Model
 from keras import optimizers
 
@@ -18,8 +18,8 @@ csv.setIntervalPrediction(Interval_prediction)
 
 ###########################################
 ##############Making Data##################
-#X,Y=csv.makeData()
-X,Y=csv.getShuffleData()
+X,Y=csv.makeData()
+#X,Y=csv.getShuffleData()
 ###########################################
 #batch_size=20
 #X=np.random.random((batch_size,timesteps,data_dim))
@@ -34,20 +34,23 @@ print(Y.shape)
 inputs = Input(shape=(timesteps,data_dim))
 #inputs = Input(shape=(data_dim,))
 # a layer instance is callable on a tensor, and returns a tensor
-x = Dense(10, activation='relu')(inputs)
-x = Dense(10, activation='relu')(inputs)
-x = Dense(10, activation='relu')(inputs)
+x=LSTM(units=64,activation='relu',return_sequences=True)(inputs)
+x=LSTM(units=64,activation='relu',return_sequences=True)(x)
+x=LSTM(units=64,activation='relu')(x)
+'''
+x = Dense(10, activation='relu')(x)
+x = Dense(10, activation='relu')(x)
 
 #x = Conv1D(64, 2,activation='relu')(x)
 #x = Conv1D(64, 2)(x)
-
-x = Flatten()(inputs)
-
-x = Dense(120, activation='relu')(x)
+x = Flatten()(x)
 
 x = Dense(120, activation='relu')(x)
+
 x = Dense(120, activation='relu')(x)
 x = Dense(120, activation='relu')(x)
+x = Dense(120, activation='relu')(x)
+'''
 out = Dense(10, activation='relu')(x)
 
 
@@ -70,7 +73,7 @@ model.compile(loss="binary_crossentropy", optimizer="sgd", metrics=["accuracy"])
 
 learningNum=1
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=30)
+    model.fit(X, Y, epochs=epoch, batch_size=1000)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)
