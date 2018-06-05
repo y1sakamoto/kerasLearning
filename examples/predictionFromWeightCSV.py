@@ -13,7 +13,7 @@ path=os.path.exists("../examples/weight_10000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
-model=load_model("../examples/weight_200000.h5")
+model=load_model("../examples/weight_10000.h5")
 
 
 data_dim=2

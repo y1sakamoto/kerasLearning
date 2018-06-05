@@ -14,13 +14,14 @@ print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
 
-model=load_model("../examples/weight_10000.h5")
+model=load_model("../examples/weight_5000.h5")
 
 data_dim=2
 timesteps = 50
-epoch=10000
+epoch=5000
 Interval_prediction=30
-'''
+
+
 csv.setTimeSteps(timesteps)
 #X,Y=csv.makeData()
 X,Y=csv.getShuffleData()
@@ -28,7 +29,7 @@ X,Y=csv.getShuffleData()
 learningNum=2
 print(model.summary())
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=300)
+    model.fit(X, Y, epochs=epoch, batch_size=2000)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)
@@ -43,4 +44,3 @@ while(True):
 
 #model.fit(Data_X, Data_Y)  # starts training
 print(model.summary())
-'''

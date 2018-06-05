@@ -10,7 +10,7 @@ import oscToKeras as osc
 
 import os
 path=os.path.exists("./examples/weight_2000.h5")
-model=load_model("../examples/weight_10000.h5")
+model=load_model("../examples/weight_30000.h5")
 
 #print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
