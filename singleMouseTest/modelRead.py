@@ -9,12 +9,12 @@ import numpy as np
 
 import os
 
-path=os.path.exists("../examples/weight_61000.h5")
+path=os.path.exists("./singleMouseTest/weight/0604weight/weight_5000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
 
-model=load_model("../examples/weight_61000.h5")
+model=load_model("./singleMouseTest/weight/0604weight/weight_5000.h5")
 
 batch_size=20
 data_dim=2
