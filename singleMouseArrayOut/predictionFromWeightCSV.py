@@ -9,17 +9,18 @@ import readCsvData as csv
 
 import os
 
-path=os.path.exists("./singleMouseTest/weight/0604weight/weight_5000.h5")
+path=os.path.exists("./examples/weight_100000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
-model=load_model("./singleMouseArrayOut/0606weight/weight_50000.h5")
+model=load_model("./singleMouseArrayOut/weight_10000.h5")
+#model=load_model("../../examples/weight_50000.h5")
 
 
 
 
 data_dim=2
-inputSteps = 50
+inputSteps = 200
 outputSteps = 50
 
 epoch=5000

@@ -14,22 +14,29 @@ print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
 
-model=load_model("./singleMouseTest/weight/0604weight/weight_5000.h5")
+model=load_model("./singleMouseArrayOut/0606weight/weight_10000.h5")
+
 
 data_dim=2
-timesteps = 50
-epoch=5000
-Interval_prediction=30
+inputSteps = 200
+outputSteps = 50
+
+epoch=2000
+Interval_prediction=0
 
 
-csv.setTimeSteps(timesteps)
+###########################################
+##############Making Data##################
 #X,Y=csv.makeData()
-X,Y=csv.getShuffleData()
+X,Y=csv.getShuffleData(inputSteps,outputSteps,Interval_prediction)
 
-learningNum=2
+learningNum=6
 print(model.summary())
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=2000)
+    model.fit(X, Y, epochs=epoch, batch_size=500)
+
+
+
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)
