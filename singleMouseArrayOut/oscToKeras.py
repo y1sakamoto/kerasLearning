@@ -34,9 +34,9 @@ def setValue(x,y):
     global arrayInput
     arrayInput = np.delete(arrayInput, 0, 1)
     arrayInput= np.append(arrayInput, [[[x, y]]], axis=1)
-    print(x)
-    print(y)
-    print(arrayInput)
+    #print(x)
+    #print(y)
+    #print(arrayInput)
     pass
 
 
@@ -61,10 +61,10 @@ def send(arr):
 
 #def sendNpArray(arr:np.empty((1,1,2), float)):
 def sendArray(arr):
-    arr = np.resize(arr,2)
+    arr = np.resize(arr,100)
     list= arr.tolist()
     msg = oscbuildparse.OSCMessage("/predict/", None, list)
-    print (list)
+    #print (msg)
     osc_send(msg, "osc_sender")
     pass
 

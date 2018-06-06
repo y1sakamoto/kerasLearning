@@ -13,7 +13,7 @@ path=os.path.exists("./examples/weight_100000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
-model=load_model("./singleMouseArrayOut/weight_10000.h5")
+model=load_model("./singleMouseArrayOut/0606weight/weight_24000.h5")
 #model=load_model("../../examples/weight_50000.h5")
 
 
@@ -37,6 +37,12 @@ while(True):
 
     x,y=csv.getRandom(X,Y)
     prediction=model.predict(x,batch_size=64)
-    #print(y)
+    #print('x')
+
+    #print(x)
+    #print('prediction')
+
     #print(prediction)
+    #print('y-prediction')
+
     print(y-prediction)

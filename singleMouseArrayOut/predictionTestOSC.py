@@ -10,7 +10,7 @@ import oscToKeras as osc
 
 import os
 path=os.path.exists("./singleMouseTest/weight/0604weight/weight_5000.h5")
-model=load_model("./singleMouseTest/weight/0604weight/weight_5000.h5")
+model=load_model("./singleMouseArrayOut/0606weight/weight_24000.h5")
 
 #print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
@@ -18,8 +18,8 @@ model=load_model("./singleMouseTest/weight/0604weight/weight_5000.h5")
 
 batch_size=20
 data_dim=2
-timesteps = 50
-epoch=1000
+timesteps = 200
+
 osc.set()
 osc.setTimeSteps(timesteps)
 
@@ -27,10 +27,16 @@ counter=0
 while(True):
     counter+=1
     x=osc.getArrayInput()
-    print(x)
+    #print(x)
     if counter==3:
         counter=0
         prediction=model.predict(x,batch_size=64)
+        print('x')
+        print(x)
+        print('prediction')
+
+        print(prediction)
+
         osc.sendArray(prediction)
     osc.loop()
     #sleep(0.033)
