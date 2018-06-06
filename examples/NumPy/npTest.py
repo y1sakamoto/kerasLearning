@@ -95,7 +95,8 @@ new = np.delete(data, 0, 0)
 ##print(new.shape)
 #print(new)
 
-data = np.array(range(100)).reshape(1,50,2)
+data = np.array(range(200)).reshape(1,100,2)
+print(data)
 data = np.zeros((1,50,2))
 
 data = np.delete(data, 0, 1)
@@ -113,5 +114,13 @@ deta = data.resize(2)
 p=data.tolist()
 #print(data)
 #print(p)
+
+data = np.array([[[i] for i in range(50)],[[i] for i in range(50)]])
+#print (data)
+
+def test(a=20,b=10):
+    print(a)
+
+test(a=30)
 
 #print(ar)
