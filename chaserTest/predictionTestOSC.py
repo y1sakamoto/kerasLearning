@@ -15,10 +15,15 @@ model=load_model("./singleMouseArrayOut/0606weight/weight_24000.h5")
 #print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
+import config as c
 
-batch_size=20
-data_dim=2
-timesteps = 200
+data_dim=c.data_dim
+timesteps = c.inputSteps
+
+
+
+
+
 
 osc.set()
 osc.setTimeSteps(timesteps)

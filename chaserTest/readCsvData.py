@@ -1,6 +1,6 @@
 import os
 
-a=os.path.exists("./singleMouseTest/csv/MyRecordedMouseData.csv")
+a=os.path.exists("./chaserTest/csv/MyRecordedMouseData.csv")
 
 #a=os.path.exists("MyRecordedMouseData.csv")
 
@@ -14,9 +14,9 @@ import random
 
 
 def getListFromCsv():
-    data = np.loadtxt('./singleMouseTest/csv/MyRecordedMouseData.csv', delimiter=',', dtype='float')
-    #data = np.array(range(200)).reshape(100,2)
-
+    data = np.loadtxt('./chaserTest/csv/MyRecordedMouseData.csv', delimiter=',', dtype='float')
+    #data = np.array(range(200)).reshape(50,4)
+    #data = np.linspace(0,1,20000).reshape(5000,4)
     print('datasahpe:[%d][%d]' % (data.shape[0],data.shape[1]))
     list = data.tolist()
     dataSize0=data.shape[0]
@@ -24,36 +24,47 @@ def getListFromCsv():
 
 
 
-def makeData(inputSteps=30,outputSteps=30,Interval_prediction=20):
+def makeData(inputSteps=20,outputSteps=1,Interval_prediction=20,Interval_steps=1):
     input=[]
     output=[]
     list,dataShape=getListFromCsv()
-    _MaxNum=dataShape-inputSteps-Interval_prediction-outputSteps
+    _MaxNum=dataShape
+    _MaxNum=_MaxNum-inputSteps*Interval_steps
+    _MaxNum=_MaxNum-Interval_prediction
+    _MaxNum=_MaxNum-outputSteps*Interval_steps
+
     #_MaxNum=10
     for i in range(_MaxNum):
         list_input=[]
         list_output=[]
 
         for j in range(inputSteps):
-            list_input.append(list[i+j])
+            _num=i+j*Interval_steps
+            list_input.append(list[_num])
         input.append(list_input)
 
         for j in range(outputSteps):
-            list_output.append(list[i+j+inputSteps+Interval_prediction])
+            _num=i+j*Interval_steps+inputSteps*Interval_steps+Interval_prediction
+            list_output.append(list[_num])
         output.append(list_output)
 
 
     np_Input=np.array(input)
-    np_Outpuy=np.array(output)
-    return np_Input,np_Outpuy
+    np_Output=np.array(output)
+
+    ##############DELETE DIMENSION######################
+    ##############DELETE DIMENSION######################
+    np_Output=np.delete(np_Output, [2,3], 2)
+
+    return np_Input,np_Output
     pass
 
-def getShuffleData(inputSteps=30,outputSteps=30,Interval_prediction=20):
-    input,output=makeData(inputSteps,outputSteps,Interval_prediction)
+def getShuffleData(inputSteps=20,outputSteps=1,Interval_prediction=20,Interval_steps=1,getDataRatio=0.5):
+    input,output=makeData(inputSteps,outputSteps,Interval_prediction,Interval_steps)
     size=input.shape[0]
     print(size)
     numArray=np.arange(size)
-    size=(int)(size*0.05)
+    size=(int)(size*getDataRatio)
     numArray=np.random.permutation(numArray)
     numArray=np.random.choice(numArray,size,replace=False)
     #print(input[numArray])
@@ -69,9 +80,15 @@ def getRandom(x,y):
     return rand_x,rand_y
 
 
-#a,b=makeData(inputSteps=5,outputSteps=5,Interval_prediction=5)
+#a,b=makeData(inputSteps=10,outputSteps=2,Interval_prediction=0,Interval_steps=1)
 
 #a,b=getShuffleData(inputSteps=5,outputSteps=5,Interval_prediction=1)
+
+#date = np.linspace(0,1,20000).reshape(5000,4)
+#print(date)
+
+#print(a)
+#print(b)
 
 #print(a[0])
 #print(b[0])

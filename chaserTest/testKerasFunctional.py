@@ -4,21 +4,23 @@ from keras import optimizers
 
 import numpy as np
 import readCsvData as csv
+import config as c
 
 
+input_data_dim=c.inputDataDim
+output_data_dim=c.outputDataDim
 
-data_dim=2
-inputSteps = 50
-outputSteps = 50
-
-epoch=2000
-Interval_prediction=0
-
+inputSteps = c.inputSteps
+outputSteps = c.outputSteps
+epoch=c.epoch
+Interval_prediction=c.Interval_prediction
+Interval_steps=c.Interval_steps
+getDataRatio=c.getDataRatio
 
 ###########################################
 ##############Making Data##################
-#X,Y=csv.makeData()
-X,Y=csv.getShuffleData(inputSteps,outputSteps,Interval_prediction)
+#X,Y=csv.makeData(inputSteps,outputSteps,Interval_prediction,Interval_steps)
+X,Y=csv.getShuffleData(inputSteps,outputSteps,Interval_prediction,Interval_steps,getDataRatio)
 
 #X,Y=csv.getShuffleData()
 ###########################################
@@ -32,7 +34,7 @@ print(Y.shape)
 
 
 # This returns a tensor
-inputs = Input(shape=(inputSteps,data_dim))
+inputs = Input(shape=(inputSteps,input_data_dim))
 #inputs = Input(shape=(data_dim,))
 # a layer instance is callable on a tensor, and returns a tensor
 
@@ -43,13 +45,16 @@ inputs = Input(shape=(inputSteps,data_dim))
 
 #x = Conv1D(10,kernel_size=20,activation='relu')(x)
 #x = Dense(30, activation='relu')(x)
+x = Conv1D(4,kernel_size=3,activation='relu')(inputs)
+x = Conv1D(4,kernel_size=3,activation='relu')(x)
+x = MaxPooling1D(pool_size=2)(x)
+x = Conv1D(4,kernel_size=3,activation='relu')(x)
+x = Conv1D(4,kernel_size=3,activation='relu')(x)
+x = MaxPooling1D(pool_size=2)(x)
+x = Conv1D(2,kernel_size=3,activation='relu')(x)
+x = Conv1D(2,kernel_size=3,activation='relu')(x)
+x = MaxPooling1D(pool_size=2)(x)
 
-#x = Conv1D(4,kernel_size=3,activation='relu')(inputs)
-#x = Conv1D(4,kernel_size=3,activation='relu')(x)
-#x = MaxPooling1D(pool_size=2)(x)
-#x = Conv1D(8,kernel_size=3,activation='relu')(x)
-#x = Conv1D(8,kernel_size=3,activation='relu')(x)
-#x = MaxPooling1D(pool_size=2)(x)
 
 #x = Conv1D(100,kernel_size=1,activation='relu')(inputs)
 
@@ -60,18 +65,20 @@ inputs = Input(shape=(inputSteps,data_dim))
 #x = Conv1D(64, 2)(x)
 
 #x = Dense(120, activation='relu')(inputs)
-x = Flatten()(inputs)
-x = Dense(500, activation='relu')(x)
-x = Dense(500, activation='relu')(x)
-x = Dense(500, activation='relu')(x)
-x = Dense(500, activation='relu')(x)
+x = Flatten()(x)
+#x = Dense(160, activation='relu')(x)
+#x = Dense(160, activation='relu')(x)
+x = Dense(32, activation='relu')(x)
+x = Dense(32, activation='relu')(x)
+x = Dense(32, activation='relu')(x)
+x = Dense(32, activation='relu')(x)
 
-x = Dense(500, activation='relu')(x)
-x = Dense(100, activation='relu')(x)
-out = Reshape((outputSteps, data_dim))(x)
+x = Dense(2, activation='relu')(x)
+
+out = Reshape((outputSteps, output_data_dim))(x)
 
 
-predictions = Dense(data_dim, activation='sigmoid')(out)
+predictions = Dense(output_data_dim, activation='sigmoid')(out)
 
 # This creates a model that includes
 
@@ -84,14 +91,14 @@ print(model.summary())
 #opt=optimizers.Adadelta(lr=1.0, rho=0.95, epsilon=None, decay=0.0)
 #model.compile(loss="binary_crossentropy", optimizer=opt, metrics=["accuracy"])
 
-model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
+model.compile(loss="mean_absolute_percentage_error", optimizer="adam", metrics=["accuracy"])
 
 
 
 
 learningNum=1
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=200,validation_split=0.5)
+    model.fit(X, Y, epochs=epoch, batch_size=10,validation_split=0.1)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)

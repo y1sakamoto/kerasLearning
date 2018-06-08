@@ -6,28 +6,39 @@ from keras import optimizers
 
 import numpy as np
 #import readCsvData as csv
+import config as c
 
 import os
 
-path=os.path.exists("./singleMouseTest/weight/0604weight/weight_5000.h5")
+path=os.path.exists("../kerasTest/weight_14000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
 
-model=load_model("./singleMouseTest/weight/0604weight/weight_5000.h5")
+model=load_model("../kerasTest/weight_12000.h5")
 
-batch_size=20
-data_dim=2
-timesteps = 20
-epoch=1000
 
-csv.setTimeSteps(timesteps)
-X,Y=csv.makeData()
 
-learningNum=61
+inputDataDim=c.inputDataDim
+inputSteps = c.inputSteps
+outputSteps = c.outputSteps
+epoch=c.epoch
+Interval_prediction=c.Interval_prediction
+Interval_steps=c.Interval_steps
+getDataRatio=c.getDataRatio
 
+###########################################
+##############Making Data##################
+#X,Y=csv.makeData()
+X,Y=csv.getShuffleData(inputSteps,outputSteps,Interval_prediction,Interval_steps,getDataRatio)
+
+learningNum=7
+print(model.summary())
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=300)
+    model.fit(X, Y, epochs=epoch, batch_size=500)
+
+
+
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)
