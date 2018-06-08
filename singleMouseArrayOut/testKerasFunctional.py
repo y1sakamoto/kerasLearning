@@ -8,7 +8,7 @@ import readCsvData as csv
 
 
 data_dim=2
-inputSteps = 200
+inputSteps = 50
 outputSteps = 50
 
 epoch=2000
@@ -91,7 +91,7 @@ model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"]
 
 learningNum=1
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=200)
+    model.fit(X, Y, epochs=epoch, batch_size=200,validation_split=0.5)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)

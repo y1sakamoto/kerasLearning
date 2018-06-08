@@ -53,7 +53,7 @@ def getShuffleData(inputSteps=30,outputSteps=30,Interval_prediction=20):
     size=input.shape[0]
     print(size)
     numArray=np.arange(size)
-    size=(int)(size*0.5)
+    size=(int)(size*0.05)
     numArray=np.random.permutation(numArray)
     numArray=np.random.choice(numArray,size,replace=False)
     #print(input[numArray])
