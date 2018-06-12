@@ -124,3 +124,9 @@ def test(a=20,b=10):
 test(a=30)
 
 #print(ar)
+
+
+a=np.arange(12).reshape(1,3,4)
+print(a)
+a=a.transpose(0,2,1)
+print(a)

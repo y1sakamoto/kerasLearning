@@ -1,4 +1,4 @@
-from keras.layers import Input, Dense,Flatten,Conv2D,Conv1D,Activation,LSTM,Reshape,MaxPooling1D,Cropping1D
+from keras.layers import Input, Dense,Flatten,Conv2D,Conv1D,Activation,LSTM,Reshape,MaxPooling1D,Cropping1D,Dropout
 from keras.models import Model
 from keras import optimizers
 
@@ -35,25 +35,44 @@ print(Y.shape)
 
 # This returns a tensor
 inputs = Input(shape=(inputSteps,input_data_dim))
-#inputs = Input(shape=(data_dim,))
-# a layer instance is callable on a tensor, and returns a tensor
-
-#x = Dense(10, activation='relu')(inputs)
-
-#x = Conv1D(10,kernel_size=20,activation='relu')(inputs)
-#x = Dense(30, activation='relu')(x)
-
-#x = Conv1D(10,kernel_size=20,activation='relu')(x)
-#x = Dense(30, activation='relu')(x)
-x = Conv1D(4,kernel_size=3,activation='relu')(inputs)
-x = Conv1D(4,kernel_size=3,activation='relu')(x)
+#inputs = Input(shape=(input_data_dim,inputSteps))
+'''
+x = Conv1D(60,kernel_size=1,activation='relu')(inputs)
+x = Dropout(0.2)(x)
+x = Conv1D(60,kernel_size=1,activation='relu')(x)
+x = Dropout(0.2)(x)
 x = MaxPooling1D(pool_size=2)(x)
-x = Conv1D(4,kernel_size=3,activation='relu')(x)
-x = Conv1D(4,kernel_size=3,activation='relu')(x)
+x = Conv1D(10,kernel_size=1,activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Conv1D(10,kernel_size=1,activation='relu')(x)
+x = Dropout(0.2)(x)
 x = MaxPooling1D(pool_size=2)(x)
-x = Conv1D(2,kernel_size=3,activation='relu')(x)
-x = Conv1D(2,kernel_size=3,activation='relu')(x)
-x = MaxPooling1D(pool_size=2)(x)
+'''
+'''
+x = Dense(30, activation='relu')(inputs)
+x = Dropout(0.2)(x)
+x = Dense(10, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(10, activation='relu')(x)
+x = Dropout(0.2)(x)
+'''
+x = Flatten()(inputs)
+
+x = Dense(240, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(240, activation='relu')(x)
+x = Dense(240, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(240, activation='relu')(x)
+x = Dense(240, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(30, activation='relu')(x)
+x = Dense(30, activation='relu')(x)
+#x = Conv1D(4,kernel_size=3,activation='relu')(x)
+
+#x = Conv1D(4,kernel_size=3,activation='relu')(x)
+#x = Dropout(0.2)(x)
+#x = MaxPooling1D(pool_size=2)(x)
 
 
 #x = Conv1D(100,kernel_size=1,activation='relu')(inputs)
@@ -65,13 +84,28 @@ x = MaxPooling1D(pool_size=2)(x)
 #x = Conv1D(64, 2)(x)
 
 #x = Dense(120, activation='relu')(inputs)
-x = Flatten()(x)
-#x = Dense(160, activation='relu')(x)
-#x = Dense(160, activation='relu')(x)
-x = Dense(32, activation='relu')(x)
-x = Dense(32, activation='relu')(x)
-x = Dense(32, activation='relu')(x)
-x = Dense(32, activation='relu')(x)
+#x = Dense(4, activation='relu')(inputs)
+#x = Dense(4, activation='relu')(inputs)
+
+
+
+
+'''
+x = Flatten()(inputs)
+x = Dense(60, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(60, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(60, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(60, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(60, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(60, activation='relu')(x)
+x = Dropout(0.2)(x)
+'''
+
 
 x = Dense(2, activation='relu')(x)
 
@@ -91,14 +125,14 @@ print(model.summary())
 #opt=optimizers.Adadelta(lr=1.0, rho=0.95, epsilon=None, decay=0.0)
 #model.compile(loss="binary_crossentropy", optimizer=opt, metrics=["accuracy"])
 
-model.compile(loss="mean_absolute_percentage_error", optimizer="adam", metrics=["accuracy"])
+model.compile(loss="mean_absolute_error", optimizer="adam", metrics=["accuracy"])
 
 
 
 
 learningNum=1
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=10,validation_split=0.1)
+    model.fit(X, Y, epochs=epoch, batch_size=3000,validation_split=0.6)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)

@@ -15,7 +15,7 @@ print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
 
-model=load_model("../kerasTest/weight_12000.h5")
+model=load_model("./weight_130000.h5")
 
 
 
@@ -32,10 +32,10 @@ getDataRatio=c.getDataRatio
 #X,Y=csv.makeData()
 X,Y=csv.getShuffleData(inputSteps,outputSteps,Interval_prediction,Interval_steps,getDataRatio)
 
-learningNum=7
+learningNum=25
 print(model.summary())
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=500)
+    model.fit(X, Y, epochs=epoch, batch_size=1000)
 
 
 

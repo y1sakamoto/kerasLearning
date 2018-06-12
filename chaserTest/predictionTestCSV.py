@@ -12,7 +12,7 @@ path=os.path.exists("./examples/weight_140000.h5")
 print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
-model=load_model("./weight_10000.h5")
+model=load_model("./weight_200000.h5")
 #model=load_model("../../examples/weight_50000.h5")
 import config as c
 
@@ -43,9 +43,11 @@ while(True):
     #print('x')
 
     #print(x)
-    #print('prediction')
 
+    #print('y')
+
+    #print(y)
+    #print('prediction')
     #print(prediction)
-    #print('y-prediction')
 
     print(y-prediction)

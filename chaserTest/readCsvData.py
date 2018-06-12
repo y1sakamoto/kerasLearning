@@ -68,7 +68,11 @@ def getShuffleData(inputSteps=20,outputSteps=1,Interval_prediction=20,Interval_s
     numArray=np.random.permutation(numArray)
     numArray=np.random.choice(numArray,size,replace=False)
     #print(input[numArray])
+    #_input=input[numArray]
+    #_input=_input.transpose(0,2,1)
+    #return input[numArray],output[numArray]
     return input[numArray],output[numArray]
+
 
 
 
@@ -82,13 +86,14 @@ def getRandom(x,y):
 
 #a,b=makeData(inputSteps=10,outputSteps=2,Interval_prediction=0,Interval_steps=1)
 
-#a,b=getShuffleData(inputSteps=5,outputSteps=5,Interval_prediction=1)
+a,b=getShuffleData(inputSteps=5,outputSteps=5,Interval_prediction=1)
 
 #date = np.linspace(0,1,20000).reshape(5000,4)
 #print(date)
-
-#print(a)
-#print(b)
+print(np.shape(a))
+##print(b)
+#a=a.transpose(0,2,1)
+#print(a[0])
 
 #print(a[0])
 #print(b[0])
