@@ -2,6 +2,10 @@ from keras.layers import Input, Dense,Flatten,Conv2D,Conv1D,Activation,LSTM,Resh
 from keras.models import Model
 from keras import optimizers
 
+import keras.callbacks
+import keras.backend.tensorflow_backend as KTF
+import tensorflow as tf
+
 import numpy as np
 import readCsvData as csv
 import config as c
@@ -16,6 +20,8 @@ epoch=c.epoch
 Interval_prediction=c.Interval_prediction
 Interval_steps=c.Interval_steps
 getDataRatio=c.getDataRatio
+
+log_filepath = './log'
 
 ###########################################
 ##############Making Data##################
@@ -128,11 +134,13 @@ print(model.summary())
 model.compile(loss="mean_absolute_error", optimizer="adam", metrics=["accuracy"])
 
 
+tb_cb = keras.callbacks.TensorBoard(log_dir=log_filepath, histogram_freq=1)
+cbks = [tb_cb]
 
 
 learningNum=1
 while(True):
-    model.fit(X, Y, epochs=epoch, batch_size=3000,validation_split=0.6)
+    history=model.fit(X, Y, epochs=epoch, batch_size=3000,validation_split=0.6)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)
