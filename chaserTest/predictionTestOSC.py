@@ -9,16 +9,16 @@ import oscToKeras as osc
 
 
 import os
-path=os.path.exists("./singleMouseTest/weight/0604weight/weight_5000.h5")
-model=load_model("./singleMouseArrayOut/0606weight/weight_24000.h5")
+path=os.path.exists("./chaserTest/0612interval2/weight_200000.h5")
+model=load_model("./chaserTest/0612interval2/weight_200000.h5")
 
 #print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
 #model=load_model("../examples/weights/weight_10000.h5")
 import config as c
 
-data_dim=c.data_dim
-timesteps = c.inputSteps
+input_data_dim=c.inputDataDim
+input_steps = c.inputSteps
 
 
 
@@ -26,12 +26,12 @@ timesteps = c.inputSteps
 
 
 osc.set()
-osc.setTimeSteps(timesteps)
+osc.setInputSize(input_steps,input_data_dim)
 
 counter=0
 while(True):
     counter+=1
-    x=osc.getArrayInput()
+    x=osc.getInput()
     #print(x)
     if counter==3:
         counter=0

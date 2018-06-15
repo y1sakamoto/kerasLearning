@@ -64,17 +64,17 @@ x = Dropout(0.2)(x)
 '''
 x = Flatten()(inputs)
 
-x = Dense(240, activation='relu')(x)
-x = Dropout(0.2)(x)
-x = Dense(240, activation='relu')(x)
-x = Dense(240, activation='relu')(x)
-x = Dropout(0.2)(x)
-x = Dense(240, activation='relu')(x)
-x = Dense(240, activation='relu')(x)
-x = Dropout(0.2)(x)
-x = Dense(30, activation='relu')(x)
-x = Dense(30, activation='relu')(x)
-#x = Conv1D(4,kernel_size=3,activation='relu')(x)
+x = Dense(60, activation='relu')(x)
+#x = Dropout(0.2)(x)
+x = Dense(60, activation='relu')(x)
+x = Dense(60, activation='relu')(x)
+#x = Dropout(0.2)(x)
+x = Dense(60, activation='relu')(x)
+x = Dense(60, activation='relu')(x)
+#x = Dropout(0.2)(x)
+x = Dense(10, activation='relu')(x)
+x = Dense(10, activation='relu')(x)
+    #x = Conv1D(4,kernel_size=3,activation='relu')(x)
 
 #x = Conv1D(4,kernel_size=3,activation='relu')(x)
 #x = Dropout(0.2)(x)
@@ -140,7 +140,7 @@ cbks = [tb_cb]
 
 learningNum=1
 while(True):
-    history=model.fit(X, Y, epochs=epoch, batch_size=3000,validation_split=0.6)
+    history=model.fit(X, Y, epochs=epoch, batch_size=3000,validation_split=0.1)
 
     fileName='weight_%i.h5' % (learningNum*epoch)
     print(fileName)

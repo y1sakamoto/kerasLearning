@@ -130,3 +130,7 @@ a=np.arange(12).reshape(1,3,4)
 print(a)
 a=a.transpose(0,2,1)
 print(a)
+
+a=np.arange(12).reshape(1,3,4)
+a=np.insert(a, [4,4,2,2], 0, axis=2)
+print(a)

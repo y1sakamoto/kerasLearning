@@ -54,6 +54,7 @@ def makeData(inputSteps=20,outputSteps=1,Interval_prediction=20,Interval_steps=1
 
     ##############DELETE DIMENSION######################
     ##############DELETE DIMENSION######################
+    np_Input=np.delete(np_Input, [0,1], 2)
     np_Output=np.delete(np_Output, [2,3], 2)
 
     return np_Input,np_Output
@@ -84,16 +85,16 @@ def getRandom(x,y):
     return rand_x,rand_y
 
 
-#a,b=makeData(inputSteps=10,outputSteps=2,Interval_prediction=0,Interval_steps=1)
+#a,b=makeData(inputSteps=10,outputSteps=1,Interval_prediction=0,Interval_steps=1)
 
-a,b=getShuffleData(inputSteps=5,outputSteps=5,Interval_prediction=1)
+#a,b=getShuffleData(inputSteps=5,outputSteps=5,Interval_prediction=1)
 
 #date = np.linspace(0,1,20000).reshape(5000,4)
 #print(date)
-print(np.shape(a))
-##print(b)
+#print(np.shape(a))
 #a=a.transpose(0,2,1)
-#print(a[0])
+#print(a)
+#print(b)
 
 #print(a[0])
 #print(b[0])

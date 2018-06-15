@@ -4,17 +4,21 @@ from osc4py3 import oscmethod as osm
 import numpy as np
 
 
-arrayInput=np.zeros((1,20,2))
+input=np.zeros((1,20,4))
 
-def setTimeSteps(steps):
-    global arrayInput
-    arrayInput=np.zeros((1,steps,2))
+def setArraySize():
+    global input
+    pass
+
+def setInputSize(steps,dim):
+    global input
+    input=np.zeros((1,steps,dim))
     pass
 
 
-def getArrayInput():
-    global arrayInput
-    return arrayInput
+def getInput():
+    global input
+    return input
     pass
 
 def handlerfunction(s, x, y):
@@ -31,12 +35,21 @@ def finish():
 
 def setValue(x,y):
 
-    global arrayInput
-    arrayInput = np.delete(arrayInput, 0, 1)
-    arrayInput= np.append(arrayInput, [[[x, y]]], axis=1)
+    global input
+    input = np.delete(input, 0, 1)
+    input= np.append(input, [[[x, y]]], axis=1)
     #print(x)
     #print(y)
     #print(arrayInput)
+    pass
+
+
+def setListValue(*arg):
+    global input
+    ls=list(arg)
+    input = np.delete(input, 0, 1)
+    input= np.append(input, [[ls]], axis=1)
+    print(input)
     pass
 
 
@@ -49,7 +62,7 @@ def set ():
 
     osc_method("/test/*", handlerfunction)
     osc_method("/finish/*", finish)
-    osc_method("/pos/*", setValue)
+    osc_method("/pos/*", setListValue)
     pass
 
 
@@ -73,9 +86,6 @@ def loop():
     osc_process()
     pass
 
-def getInputArray():
-    global arrayInput
-    return arrayInput
 
 
 
