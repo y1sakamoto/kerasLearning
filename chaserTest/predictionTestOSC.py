@@ -9,8 +9,8 @@ import oscToKeras as osc
 
 
 import os
-path=os.path.exists("./chaserTest/0612interval2/weight_200000.h5")
-model=load_model("./chaserTest/0612interval2/weight_200000.h5")
+path=os.path.exists("./chaserTest/0612interval2/weight_3000000.h5")
+model=load_model("./0619/weight_130000.h5")
 
 #print(path)
 #Model.load_weights("../examples/weights/weight_10000.h5")
@@ -36,11 +36,11 @@ while(True):
     if counter==3:
         counter=0
         prediction=model.predict(x,batch_size=64)
-        print('x')
-        print(x)
-        print('prediction')
+        #print('x')
+        #print(x)
+        #print('prediction')
 
-        print(prediction)
+        #print(prediction)
 
         osc.sendArray(prediction)
     osc.loop()

@@ -49,7 +49,7 @@ def setListValue(*arg):
     ls=list(arg)
     input = np.delete(input, 0, 1)
     input= np.append(input, [[ls]], axis=1)
-    print(input)
+    #print(input)
     pass
 
 
