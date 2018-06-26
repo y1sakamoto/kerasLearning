@@ -14,6 +14,10 @@ def handlerfunction2(address, s, x, y):
     # Will receive message address, and message data flattened in s, x, y
     pass
 
+def finish():
+    osc_terminate()
+    pass
+
 # Start the system.
 osc_startup()
 
@@ -26,6 +30,7 @@ osc_udp_server("0.0.0.0", 3724, "anotherserver")
 osc_method("/test/*", handlerfunction)
 # Too, but request the message address pattern before in argscheme
 osc_method("/test/*", handlerfunction2, argscheme=osm.OSCARG_ADDRESS + osm.OSCARG_DATAUNPACK)
+osc_method("/finish/*", finish)
 
 # Periodically call osc4py3 processing method in your event loop.
 finished = False

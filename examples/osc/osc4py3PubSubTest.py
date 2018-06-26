@@ -40,7 +40,7 @@ def set ():
     osc_startup()
     osc_udp_client("127.0.0.1", 2782, "aclientname")##senf
     osc_udp_server("127.0.0.1", 3722, "aservername")##recieve
-    osc_method("/test/*", setListValue)
+    osc_method("/test/*", handlerfunction)
     osc_method("/finish/*", finish)
     pass
 

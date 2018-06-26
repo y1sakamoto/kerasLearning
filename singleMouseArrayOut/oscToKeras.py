@@ -5,6 +5,7 @@ import numpy as np
 
 
 arrayInput=np.zeros((1,20,2))
+frameNum=0
 
 def setTimeSteps(steps):
     global arrayInput
@@ -29,7 +30,7 @@ def finish():
     pass
 
 
-def setValue(x,y):
+def setValue(x,y):##################
 
     global arrayInput
     arrayInput = np.delete(arrayInput, 0, 1)
