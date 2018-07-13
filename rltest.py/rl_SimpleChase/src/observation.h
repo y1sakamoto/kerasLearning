@@ -27,7 +27,7 @@ public:
 
     void update(){
         if(resetFlag)setReset();
-        cout<<resetFlag<<endl;
+        //cout<<resetFlag<<endl;
     };
     
     
@@ -235,6 +235,10 @@ private:
         arr.push_back(diffPos.x);
         arr.push_back(diffPos.y);
         arr.push_back(distPos);
+        arr.push_back(reward);
+        arr.push_back(done);
+
+
     }
     
     void resetData(){

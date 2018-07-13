@@ -15,10 +15,14 @@ def setObservation(*arg):
     global observation
     global frameNum
     ls=list(arg)
-    frameNum=arg[0]
+    #frameNum=arg[0]
     arr=np.array(ls)
-    arr=np.delete(arr, 0, 0)
-    observation=np.array([arr])
+    frameNum=arr[0]
+    reward=arr[-2]
+    done=arr[-1]
+    observation=np.array([arr[1:-2]])
+
+
     print('observationDATA:',' frameNum:', frameNum, observation, sep=' ')
     pass
 

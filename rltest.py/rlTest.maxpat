@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 837.0, 207.0, 999.0, 930.0 ],
+		"rect" : [ 731.0, 137.0, 999.0, 930.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,6 +38,19 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 589.0, 411.0, 54.0, 22.0 ],
+					"style" : "",
+					"text" : "/reset/ 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-12",
 					"maxclass" : "toggle",
 					"numinlets" : 1,
@@ -65,14 +78,14 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-4",
-					"linecount" : 6,
+					"linecount" : 7,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 201.0, 442.0, 176.0, 89.0 ],
+					"patching_rect" : [ 201.0, 442.0, 176.0, 102.0 ],
 					"style" : "",
-					"text" : "/observation/ 100. 0.010742 -0.011719 0.010742 -0.011719 0. 0. 0. 1.789999 1.789999 1.779999 1.779999 0.01 0.01 -0.01 -0.01 -1.769257 -1.791718 2.518039"
+					"text" : "/observation/ 100. 1.121094 0.057292 1.121094 0.057292 0. 0. 0. 1.049999 1.049999 1.039999 1.039999 0.01 0.01 -0.01 -0.01 0.081094 -0.982708 0.986048 1.125851 1."
 				}
 
 			}
@@ -150,6 +163,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-24", 0 ],
+					"source" : [ "obj-15", 0 ]
 				}
 
 			}

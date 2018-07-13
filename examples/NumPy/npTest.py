@@ -134,3 +134,17 @@ print(a)
 a=np.arange(12).reshape(1,3,4)
 a=np.insert(a, [4,4,2,2], 0, axis=2)
 print(a)
+
+
+x = np.array([1, 2, 3, 4, 5,6,7,8,9,10])
+
+    # 参照
+print(x[0])  # 先頭 2
+print(x[-1]) # 末尾 [2 3]
+print(x[-2]) # 末尾の隣
+print(x[1:-2])
+    # アクセス・代入
+x[0] = 1
+x[-1] = 30
+x[-2] = 29
+print(x)
