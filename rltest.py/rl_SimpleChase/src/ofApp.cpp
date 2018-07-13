@@ -8,9 +8,15 @@ void ofApp::setup(){
     ofxSubscribeOsc(2010, "/action/",
         [=](vector<float> _action) {
             obs.setNumFrame((int)_action[0]);
-            obs.updateFromAcction(ofVec2f(_action[1],_action[2]));
+            obs.updateFromAction(ofVec2f(_action[1],_action[2]));
         
         });
+    
+    ofxSubscribeOsc(2010, "/reset/", [=](int val) {
+        obs.setResetFlag();
+    });
+    
+    //ofxSubscribeOsc(2010, "/reset/",});
     ofxPublishOsc("localhost", 9001, "/observation/", obs.observationArray);
     ofSetFrameRate(30);
 
@@ -25,7 +31,7 @@ void ofApp::update(){
     obs.setPlayerPos(
         ofVec2f(    m.x/ofGetWindowWidth(),
                     m.y/ofGetWindowHeight()));
-
+    obs.update();
 }
 
 //--------------------------------------------------------------

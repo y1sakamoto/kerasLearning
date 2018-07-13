@@ -16,8 +16,8 @@ public:
     observation(){resetData();};
     ~observation(){};
     
-    void updateFromAcction(ofVec2f _action){
-        setResetDone();
+    void updateFromAction(ofVec2f _action){
+        //setResetDone();
         setAction(_action);
         updateObservation();
         setDone();
@@ -25,19 +25,18 @@ public:
     }
     
 
-    
+    void update(){
+        if(resetFlag)setReset();
+        cout<<resetFlag<<endl;
+    };
     
     
     void setPlayerPos(const ofVec2f _pos){playerPos=_pos;};
     void isDone(){done=true;};
 
-    
-    void reset(){
-        done=false;
-        agentPos.set(0.5,0.5);
-        agentPos_past.set(0.5,0.5);
-        agentSpeed.set(0,0);
-    };
+    void setResetFlag(){resetFlag=true;};
+
+
 
     bool getDone(){return done;};
 
@@ -93,6 +92,9 @@ public:
   
         s+="done:"+ofToString(done)+"\n\n";
         
+        s+="resetFlag:"+ofToString(resetFlag)+"\n\n";
+
+        
         return s;
         
         
@@ -109,6 +111,7 @@ private:
     
     float reward;
     bool done;
+    bool resetFlag;
     ofVec2f action;
     
     ofVec2f playerPos;
@@ -129,20 +132,25 @@ private:
 
     
     
+  //  void reset(){
+   //     done=false;
+    //    resetData();
+    //};
+    
+    
     void setAction(ofVec2f _action){action=_action;};
     
     void setDone(){
         if(getDoneFromPos()||getDoneFromStopCount())done=true;
-        
-    }
+    };
     
-    void setResetDone(){
+    void setReset(){
         if(getResetFromPos()){
-            done=false;
+            resetFlag=false;
             resetData();
         }
       
-    }
+    };
     
     
     const bool getResetFromPos(){
@@ -231,6 +239,7 @@ private:
     
     void resetData(){
         
+        done=false;
         reward=0;
         action.set(0,0);
         playerPos_past=playerPos;

@@ -5,7 +5,7 @@ env = gym.make('Pendulum-v0')
 print(envs.registry.all())
 for i_episode in range(20):
     observation = env.reset()
-    for t in range(1):
+    for t in range(1000):
 
         if i_episode == 0 and t == 0:
             print(env.action_space)

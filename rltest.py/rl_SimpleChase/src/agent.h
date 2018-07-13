@@ -22,7 +22,7 @@ public:
     void setAction(observation &obs,ofVec2f _action){
         _action.x*=ofGetWidth();
         _action.y*=ofGetHeight();
-        obs.updateFromAcction(_action);};
+        obs.updateFromAction(_action);};
     
     void draw(observation &obs){
         ofDrawBitmapString(obs.getInformation(), 50, 50);
