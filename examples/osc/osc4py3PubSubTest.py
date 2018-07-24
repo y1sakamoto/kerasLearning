@@ -39,7 +39,7 @@ def finish():
 def set ():
     osc_startup()
     osc_udp_client("127.0.0.1", 2782, "aclientname")##senf
-    osc_udp_server("127.0.0.1", 3722, "aservername")##recieve
+    osc_udp_server("127.0.0.1", 3723, "aservername")##recieve
     osc_method("/test/*", handlerfunction)
     osc_method("/finish/*", finish)
     pass
@@ -60,4 +60,6 @@ def loop():
 
 set()
 while True:
+    _arr=[10,10]
+    send(_arr)
     loop()
